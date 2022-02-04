@@ -6,7 +6,7 @@
 
 <div class="row">
  <div class="col-md-6 offset-md-3">
-<%= form_with model: @item, url: admin_genres_path, local:true do |f| %>
+<%= form_with model: @item, url: admin_items_path, local:true do |f| %>
 <table width="50%" class="table table-borderless">
  <tbody>
   <tr>
@@ -15,11 +15,11 @@
   </tr>
   <tr>
    <td>商品名</td>
-   <td><%= f.text_field :item_name, class: "form-control" %></td>
+   <td><%= f.text_field :name, class: "form-control" %></td>
   </tr>
   <tr>
    <td>商品説明</td>
-   <td><%= f.text_field :explanation, class: "form-control" %></td>
+   <td><%= f.text_field :introduction, class: "form-control" %></td>
   </tr>
   <tr>
    <td>ジャンル</td>
@@ -27,20 +27,20 @@
   </tr>
   <tr>
    <td>税抜価格</td>
-   <td><%= f.text_field :cost %>円</td>
+   <td><%= f.text_field :price %>円</td>
   </tr>
   <tr>
    <td>販売ステータス</td>
-   <td><%= f.radio_button :status, :sale %>
-  <%= f.label :status, "販売中", {value: :sale, style: "display: inline-block;"} %>
-  <%= f.radio_button :status, :not_sale %>
-  <%= f.label :status, "販売停止中", {value: :not_sale, style: "display: inline-block;"} %></td>
+   <td><%= f.radio_button :is_active, :true %>
+  <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
+  <%= f.radio_button :is_active, :false %>
+  <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %></td>
   </tr>
  </tbody>
 </table>
  
  <div class="text-center">
- <span><%= f.submit '新規登録', class:"btn btn-success" %></span>
+ <span><%= f.submit '新規登録', edit_admin_item_path, class:"btn btn-success" %></span>
  </div>
 <% end %>
 </div>

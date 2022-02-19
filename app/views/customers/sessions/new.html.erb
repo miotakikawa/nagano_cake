@@ -1,13 +1,21 @@
-<h2>Log in</h2>
+<div class="container">
+<div>
+    <strong class="alert alert-dark " role="alert">ログイン</strong> 
+</div></br></br>
 
+
+
+<div>
+    <strong class="alert alert-dark" role="alert">会員の方はこちらからログイン</strong> 
+</div></br>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "メールアドレス" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :password, "パスワード" %>
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
@@ -19,8 +27,13 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+    <%= f.submit "ログイン",class:"btn btn-primary" %>
+  </div></br></br>
 <% end %>
 
-<%= render "customers/shared/links" %>
+<div>
+    <strong class="alert alert-dark" role="alert">会員がお済みでない方</strong> 
+</div></br>
+
+<%= render "customers/shared/links" %>から新規登録を行ってください。
+</div>

@@ -5,9 +5,9 @@ Rails.application.routes.draw do
    registrations: 'admins/registrations'
   }
   devise_for :customers, controllers: {
-  sessions:      'customers/sessions',
-  passwords:     'customers/passwords',
-  registrations: 'customers/registrations'
+   sessions:      'customers/sessions',
+   passwords:     'customers/passwords',
+   registrations: 'customers/registrations'
   }
   namespace :admin do
     resources :items
@@ -21,8 +21,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
   end
-  root 'customer/homes#top'
-  get 'about' => 'customer/homes#about'
+  
+  namespace :admin do
+    resources :custmors, only: [:index, :show, :edit, :update]
+  end
+  
+  root 'public/homes#top'
+  get 'about' => 'public/homes#about'
   # resources :items, only: [:new, :create, :index, :show, :eedit, :update]
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

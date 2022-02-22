@@ -45,6 +45,7 @@
       </nav>
     <% elsif customer_signed_in? %>
      <nav class="navbar navbar-light bg-white">
+      <div>ようこそ、<%= current_customer.last_name %>さん！</div>
       <button type="button" class="btn btn-outline-secondary">
         <%= link_to 'マイページ', customers_my_page_path, class:"text-body" %>
       </button>

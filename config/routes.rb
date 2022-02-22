@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  scope module: :public do
+    resource :customers, only: [:edit, :update]
+    get 'customers/my/page' => 'customers#show'
+    get '/customers/unsubscribe' => 'customers#unsubscribe'
+    patch '/customers/withdraw' => 'customers#withdraw'
+  end
+  
   devise_for :admins, controllers: {
    sessions:      'admins/sessions',
    passwords:     'admins/passwords',
@@ -32,8 +39,5 @@ Rails.application.routes.draw do
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   
-  scope module: :public do
-    resource :customers, only: [:edit, :update, :unsubscribe, :withdraw]
-    get 'customers/my/page' => 'customers#show'
-  end
+  
 end

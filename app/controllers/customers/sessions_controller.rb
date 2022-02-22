@@ -24,4 +24,12 @@ class Customers::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  def reject_inactive_user
+    @customer = current_customer(email: params[:user][:name])
+    if @customer
+      if @customer.valid_password?(params[:user][:password]) && !@customer.is_valid
+        redirect_to new_user_session_path
+      end
+    end
+  end
 end

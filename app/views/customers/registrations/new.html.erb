@@ -4,7 +4,7 @@
 </div>
 </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
   <%= render "customers/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -27,11 +27,11 @@
   </div>
   <div class="field">
     <%= f.label :address, "住所" %>
-    <%= f.email_field :address, autofocus: true, autocomplete: "email" %>
+    <%= f.text_field :address, autofocus: true %>
   </div>
   <div class="field">
     <%= f.label :telephone_number, "電話番号(ハイフンなし)"%>
-    <%= f.email_field :telephone_number, autofocus: true, autocomplete: "email" %>
+    <%= f.text_field :telephone_number, autofocus: true %>
   </div>
 
   <div class="field">
@@ -48,8 +48,7 @@
 
   <div class="col-10">
     <%= f.submit "新規登録", class:"btn btn-success" %>
-  
-   <% end %>
+    <% end %>
   </div><br />
 
 

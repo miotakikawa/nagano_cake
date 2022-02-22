@@ -30,4 +30,10 @@ Rails.application.routes.draw do
   get 'about' => 'public/homes#about'
   # resources :items, only: [:new, :create, :index, :show, :eedit, :update]
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  
+  scope module: :public do
+    resource :customers, only: [:edit, :update, :unsubscribe, :withdraw]
+    get 'customers/my/page' => 'customers#show'
+  end
 end

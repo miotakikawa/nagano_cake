@@ -1,0 +1,35 @@
+<div class="container">
+ <div class="row">
+  <div class="col-lg-3">
+   <table border="1" width="70%">
+    <tr>
+    <td>ジャンル検索</td>
+    </tr>
+    <% @genres.each do |genre| %>
+    <tr>
+     <td><%= link_to genre.name, items_path(genre_id:genre.id) %></td>
+    </tr> 
+    <% end %>
+   </table>
+  </div>
+  
+  
+  <div class="col-lg-9">
+   <h2>
+    <% if params[:genre_id] %>
+    <%= @genre.name %>一覧(全<%= @item %>件)
+    <% else %>
+    商品一覧(全<%= @item %>件)
+    <% end %>
+   </h2>
+   
+   <% @items.each do |item| %>
+    <%= attachment_image_tag item, :image%>
+    <%= link_to item.name, item_path(item.id) %>
+    ¥ <%= (item.price * 1.1).floor %>
+   <% end %>
+    
+    
+  </div>
+ </div>
+</div>

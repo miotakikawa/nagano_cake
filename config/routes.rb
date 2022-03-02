@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  
+  scope module: :public do
+    resources :orders, only: [:new, :create, :index, :show]
+    post '/orders/confirm' => 'orders#confilm'
+    get '/orders/complete' => 'orders#complete'
+  end
+  
+  scope module: :public do
+    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+  end
+  
+  scope module: :public do
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+  end
+  
+  scope module: :public do
+    resources :items, only: [:index, :show]
+  end
+  
   scope module: :public do
     resource :customers, only: [:edit, :update]
     get 'customers/my/page' => 'customers#show'
@@ -30,7 +50,7 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
-    resources :custmors, only: [:index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   
   root 'public/homes#top'

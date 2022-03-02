@@ -5,12 +5,39 @@
 </div>
 
 <strong>登録情報</strong>
-<%= link_to " 編集する", edit_customers_path, class:"btn btn-success" %>
+<%= link_to " 編集する", edit_customers_path, class:"btn btn-success" %></br><br>
 
-<table>
+<table border="1">
  <tr>
-  <td>氏名</td>
-  
+  <td bgcolor="silver">氏名</td>
+  <td><%= current_customer.last_name %>  <%= current_customer.first_name %></td>
  </tr>
-</table>
+ <tr>
+  <td bgcolor="silver">カナ</td>
+  <td><%= current_customer.last_name_kana %> <%= current_customer.first_name_kana %></td>
+  </tr>
+ <tr>
+  <td bgcolor="silver">郵便番号</td>
+  <td><%= current_customer.postal_code %></td>
+ </tr>
+ <tr>
+  <td bgcolor="silver">住所</td>
+  <td><%= current_customer.address %></td>
+ </tr>
+ <tr>
+  <td bgcolor="silver">電話番号</td>
+  <td><%= current_customer.telephone_number %></td>
+ </tr>
+ <tr>
+  <td bgcolor="silver">メールアドレス</td>
+  <td><%= current_customer.email %></td>
+ </tr>
+</table></br></br>
 
+<strong>配送先</strong>
+<%= link_to " 一覧を見る", addresses_path, class:"btn btn-primary" %></br><br> 　
+ 
+
+<strong>注文履歴</strong>
+<%= link_to " 一覧を見る", edit_customers_path, class:"btn btn-primary" %>
+ <!--リンクを変更-->

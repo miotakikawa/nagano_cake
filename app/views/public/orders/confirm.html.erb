@@ -3,3 +3,58 @@
     <strong>注文情報確認</strong>
  </div>
 </div>
+
+ <table border="1" width="60%">
+ <tr>
+   <th bgcolor="silver">商品名</th>
+   <th bgcolor="silver">単価(税込)</th>
+   <th bgcolor="silver">数量</th>
+   <th bgcolor="silver">小計</th>
+ </tr>
+ <% @cart_items.each do |cart_item| %>
+ <tr>
+   <td><%= cart_item.item.name %></td>
+   <td><%= (cart_item.item.price * 1.1).floor %></td>
+   <td><%= cart_item.amount %></td>
+   <td><%= (cart_item.item.price * 1.1).floor * (cart_item.amount) %></td>
+   <% @total= @total+(cart_item.item.price * 1.1).floor * (cart_item.amount) %>
+ </tr>
+ <% end %>
+</table>
+
+ <table border="1" width="30%">
+  <tr>
+  <td bgcolor="silver">送料</td>
+  <td><%= 800 %></td>
+ </tr>
+ <tr>
+  <td bgcolor="silver">商品合計</td>
+  <td><%= @total %></td>
+ </tr>
+ <tr>
+  <tr>
+  <td bgcolor="silver">請求金額</td>
+  <td><%= 800+@total %></td>
+ </tr>
+ </table> 
+ 
+ <div>
+  <strong>支払方法</strong>
+  <%= @order.payment_method_i18n %>
+ </div>
+ <div>
+  <strong>お届け先</strong>
+  <%= @order.full_address %>
+ </div>
+ <%= form_with model: @order, url: orders_path, local: true do |f| %>
+ <div class="center">
+ <%= f.hidden_field :name, value: @order.name %>
+ <%= f.hidden_field :postal_code, value: @order.postal_code %>
+ <%= f.hidden_field :address, value: @order.address %>
+ <%= f.hidden_field :payment_method, value: @order.payment_method %>
+ <%= f.hidden_field :shopping_cost, value: 800 %>
+ <%= f.hidden_field :total_payment, value: @total %>
+ <%= f.hidden_field :customer_id, value: current_customer.id%>
+ <%= f.submit "注文を確定する" , class: "btn btn-success" %>
+ </div>
+ <% end %>

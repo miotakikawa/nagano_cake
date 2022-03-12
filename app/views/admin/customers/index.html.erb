@@ -1,0 +1,34 @@
+<div class="container">
+ <div class="alert alert-dark col-5 d-flex" role="alert">
+    <strong>会員一覧</strong>
+ </div>
+</div>
+
+<div class="row">
+ <div class="col">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+         <th>会員ID</th>
+         <th>氏名</th>
+         <th>メールアドレス</th>
+         <th>ステータス</th>
+        </tr>
+        <% @customers.each do |customer| %>
+          <tr>
+           <td><%= customer.id %></td>
+           <td><%= link_to customer.name, admin_customer_path(customer.id) %></td>
+           <td><%= customer.email %></td>
+           <td><% if customer.is_active ==true %>
+           <p class=text-success>有効</p>
+         <% else %>
+           <p class=text-muted>退会</p>
+           <!--退会が表示されてない？-->
+         <% end %>
+            </td>
+           </tr>    
+         <% end %>
+       </thead>
+     </table>
+ </div>
+</div>

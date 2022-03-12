@@ -1,2 +1,61 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+ <div class="alert alert-dark col-5 d-flex" role="alert">
+    <strong>注文履歴詳細</strong>
+ </div>
+</div>
+
+<strong>注文情報</strong>
+<table border="1">
+ <tr>
+  <td bgcolor="silver">注文日</td>
+  <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+ </tr>
+ <tr>
+  <td bgcolor="silver">配送先</td>
+  <td><%= @order.full_address %></td>
+  </tr>
+ <tr>
+  <td bgcolor="silver">支払方法</td>
+  <td><%= @order.payment_method_i18n %></td>
+ </tr>
+ <tr>
+  <td bgcolor="silver">ステータス</td>
+  <td><%= @order.status %></td>
+  <!--日本語化していない-->
+ </tr>
+ </table></br></br>
+ 　
+ <strong>請求情報</strong>
+ <table border="1">
+ <tr>
+  <td bgcolor="silver">商品合計</td>
+  <td><%= @order.total_payment %></td>
+ </tr>
+ <tr>
+  <td bgcolor="silver">配送料</td>
+  <td><%= @order.shopping_cost %></td>
+ </tr>
+ <tr>
+  <td bgcolor="silver">ご請求額</td>
+  <td><%= @order.shopping_cost+@order.total_payment %></td>
+ </tr>
+ </table></br></br>
+
+ <strong>注文内容</strong>
+ <table border="1" width="60%">
+ <tr>
+   <th bgcolor="silver">商品</th>
+   <th bgcolor="silver">単価(税込)</th>
+   <th bgcolor="silver">個数</th>
+   <th bgcolor="silver">小計</th>
+ </tr>
+ <% @order.order_details.each do |order_detail| %>
+ <tr>
+   <td><%= order_detail.item.name %></td>
+   <td><%= (order_detail.price * 1.1).floor %></td>
+   <td><%= order_detail.amount %></td>
+   <td><%= (order_detail.item.price * 1.1).floor * (order_detail.amount) %></td>
+   <% @total= @total+(order_detail.item.price * 1.1).floor * (order_detail.amount) %>
+ </tr>
+ <% end %>
+</table>

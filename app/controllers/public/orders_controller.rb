@@ -45,6 +45,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @total=0
+    @order=Order.find(params[:id])
   end
   
   private

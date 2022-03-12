@@ -57,7 +57,17 @@ Rails.application.routes.draw do
   get 'about' => 'public/homes#about'
   # resources :items, only: [:new, :create, :index, :show, :eedit, :update]
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+ 
+ 
+  scope module: :admin do
+    resources :homes
+    get '/admin' => 'homes#top'
+  end
   
+  namespace :admin do
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
+  end
   
   
 end

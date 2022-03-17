@@ -16,7 +16,7 @@
             　</tr>
             　<% @orders.each do |order| %>
                   <tr>
-                    <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+                    <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %></td>
                     <td><%= order.customer.name %></td>
                     <% order.order_details.each do |order_detail| %>
                      <td><%= order_detail.amount %></td>

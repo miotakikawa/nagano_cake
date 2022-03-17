@@ -3,7 +3,7 @@ class Public::CartItemsController < ApplicationController
    @items=Item.all
    @cart_items= CartItem.all
     # カートに入ってる商品の合計金額
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+   @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
   
   def create
@@ -18,20 +18,20 @@ class Public::CartItemsController < ApplicationController
   end
   
   def update
-   @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+   @cart_item = CartItem.find(params[:id])
    @cart_item.update(cart_item_params)
-   render desrtroy
+   redirect_to cart_items_path
   end
 
   def destroy
-   @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-   @cart_item.destroy(cart_item_params)
+   @cart_item = CartItem.find(params[:id])
+   @cart_item.destroy
    redirect_to cart_items_path
   end
 
   def destroy_all
-   @cart_item = current_customer.cart_items.find(params[:id])
-   @cart_item.destroy
+   @cart_item = current_customer.cart_items
+   @cart_item.destroy_all
    redirect_to cart_items_path
   end
 

@@ -14,7 +14,7 @@ module NaganoCake
     config.time_zone = 'Tokyo'
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-   
+    Refile.secret_key = 'f2663a3a14dbbf221696a9efa992e998b06ef5f033ea63d7eab2ad3d8d0ab9facec409ef85cedd8814271d41f304830552dc87f3bbe9477edcefe116ff2294a2'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

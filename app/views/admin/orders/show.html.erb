@@ -49,7 +49,7 @@
    <% @total= @total+(order_detail.item.price * 1.1).floor * (order_detail.amount) %>
    <td>
      <%= form_with model: order_detail, url: admin_order_detail_path do |f| %>
-     <%= f.select :making_status, {'製作不可':0, '製作待ち':1, '製作中':2, '製作完了':3}, class: 'sample' %>
+     <%= f.select :making_status, {'製作待ち':0, '製作不可':1, '製作中':2, '製作完了':3}, class: 'sample' %>
      <%= f.submit "編集", class:'btn btn-success' %>
      <% end %></td>
  </tr>

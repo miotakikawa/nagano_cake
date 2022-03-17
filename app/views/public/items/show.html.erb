@@ -15,8 +15,8 @@
         <div class="col-lg-9">
             <%= attachment_image_tag @item, :image%>
           <tr>
-            <td> <%= @item.name %></td>
-            <td> <%= @item.introduction %></td>
+            <td> <h5><%= @item.name %></h5></td>
+            <div><td> <%= @item.introduction %></td></div>
             <td> ¥ <%= (@item.price * 1.1).floor %>(税込)</td>
             <td> 
                 <%= form_with model: @cart_item, url: cart_items_path do |f| %>
